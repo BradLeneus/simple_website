@@ -65,4 +65,12 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+
+  #searchButton{
+     color: #535bf2;
+    margin-left: 20px;
+    background-color: #1a1a1a;
+    font-size: 10px;
+  }
+
 }

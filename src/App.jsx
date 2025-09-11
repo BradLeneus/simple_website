@@ -25,6 +25,11 @@ const  loadAllPersons = async () =>{
     }
   };*/
 
+    /*const  createPerson () =>{
+        axios.post(`http://localhost:8182/person/${name}/${lastName}/${email}/${gender}`);
+    }*/
+
+
   return (
     <div style={{ padding: '2rem' }}>
       <h1>Recherche dans la base de personnes dans les fichiers csv</h1>
@@ -36,6 +41,8 @@ const  loadAllPersons = async () =>{
         placeholder="Ex: PHI"
         style={{ padding: '0.5rem', width: '300px', fontSize: '1rem' }}
       />
+
+        <button id={"searchButton"}>Rechercher une personne</button>
 
       <table border="1" cellPadding="5" style={{ marginTop: '1rem' }}>
         <thead>
@@ -58,6 +65,7 @@ const  loadAllPersons = async () =>{
             </tr>
           ))}
         </tbody>
+
       </table>
     </div>
   );
