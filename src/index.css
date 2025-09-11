@@ -67,10 +67,15 @@ button:focus-visible {
   }
 
   #searchButton{
-     color: #535bf2;
+     color:white;
     margin-left: 20px;
-    background-color: #1a1a1a;
+    background-color: skyblue;
     font-size: 10px;
+  }
+
+  #searchButton:hover{
+    background-color: lightpink;
+
   }
 
 }
