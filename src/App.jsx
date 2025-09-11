@@ -1,25 +1,21 @@
 import { useEffect, useState } from 'react';
-import { loadDatabaseFromCSV } from './db';
-import { searchPeople } from './utils/search';
+import axios from "axios";
+// import { searchPeople } from './utils/search';
 
 function App() {
-  const [rows, setRows] = useState([]);
-  const [query, setQuery] = useState('');
-  const [db, setDb] = useState(null);
+const [listPerson,setListPerson] = useState([]);
+
+const  loadAllPersons = async () =>{
+  const result = await  axios.get("http://localhost:8182/person/getAll");
+  setListPerson(result.data);
+}
+
 
   useEffect(() => {
-    const load = async () => {
-      const database = await loadDatabaseFromCSV('/data/people.csv');
-      setDb(database);
-      const res = database.exec('SELECT * FROM people');
-      if (res.length > 0) {
-        setRows(res[0].values);
-      }
-    };
-    load();
-  }, []);
+     loadAllPersons()
+  }, [listPerson]);
 
-  const handleSearch = (e) => {
+  /*const handleSearch = (e) => {
     const input = e.target.value;
     setQuery(input);
 
@@ -27,7 +23,7 @@ function App() {
       const results = searchPeople(db, input);
       setRows(results);
     }
-  };
+  };*/
 
   return (
     <div style={{ padding: '2rem' }}>
@@ -35,8 +31,8 @@ function App() {
 
       <input
         type="text"
-        value={query}
-        onChange={handleSearch}
+        // value={query}
+        // onChange={handleSearch}
         placeholder="Ex: PHI"
         style={{ padding: '0.5rem', width: '300px', fontSize: '1rem' }}
       />
@@ -52,13 +48,13 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {rows.map(([id, first, last, email, gender]) => (
-            <tr key={id}>
-              <td>{id}</td>
-              <td>{first}</td>
-              <td>{last}</td>
-              <td>{email}</td>
-              <td>{gender}</td>
+          {listPerson.map((line,i) => (
+            <tr key={i}>
+              <td>{line.id}</td>
+              <td>{line.name}</td>
+              <td>{line.lastName}</td>
+              <td>{line.email}</td>
+              <td>{line.gender}</td>
             </tr>
           ))}
         </tbody>
