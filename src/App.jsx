@@ -27,7 +27,7 @@ const  loadAllPersons = async () =>{
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h1>Recherche dans la base de personnes</h1>
+      <h1>Recherche dans la base de personnes dans les fichiers csv</h1>
 
       <input
         type="text"
