@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 // import { searchPeople } from './utils/search';
 
+import {useNavigate} from "react-router-dom";
+
 function App() {
 const [listPerson,setListPerson] = useState([]);
 const  [singlePerson,setSinglePerson] = useState(null);
@@ -43,6 +45,11 @@ const  loadAllPersons = async () =>{
     }*/
 
 
+           // const  navigate = useNavigate();
+
+
+
+
   return (
     <div style={{ padding: '2rem' }}>
       <h1>Recherche dans la base de personnes dans les fichiers csv</h1>
@@ -57,6 +64,7 @@ const  loadAllPersons = async () =>{
       />
 
         <button id={"searchButton"} onClick={gePersonByName}>Rechercher une personne</button>
+
 
       <table border="1" cellPadding="5" style={{ marginTop: '1rem' }}>
         <thead>
