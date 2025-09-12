@@ -4,7 +4,7 @@ import axios from "axios";
 
 function App() {
 const [listPerson,setListPerson] = useState([]);
-
+const  [singlePerson,setSinglePerson] = useState(null);
 const  loadAllPersons = async () =>{
   const result = await  axios.get("http://localhost:8182/person/getAll");
   setListPerson(result.data);
@@ -12,19 +12,32 @@ const  loadAllPersons = async () =>{
 
 
   useEffect(() => {
+
      loadAllPersons()
   }, [listPerson]);
 
-  /*const handleSearch = (e) => {
-    const input = e.target.value;
-    setQuery(input);
+    const gePersonByName = async () =>{
+        let name = document.getElementById("name").value
 
-    if (db) {
-      const results = searchPeople(db, input);
-      setRows(results);
+
+        const result = await axios.get(`http://localhost:8182/person/search/${name}`);
+
+        if(result.data[0].id >0){
+            console.log(result.data)
+            setSinglePerson(result.data)
+            setListPerson()
+        }
+
+
+
+
     }
-  };*/
-
+    const handleSearch =  (e)=>{
+        console.log(e.target.value)
+        if(e.target.value == ""){
+            setSinglePerson(null)
+        }
+    }
     /*const  createPerson () =>{
         axios.post(`http://localhost:8182/person/${name}/${lastName}/${email}/${gender}`);
     }*/
@@ -36,13 +49,14 @@ const  loadAllPersons = async () =>{
 
       <input
         type="text"
+        id={"name"}
         // value={query}
-        // onChange={handleSearch}
+        onChange={(e) => handleSearch(e)}
         placeholder="Ex: PHI"
         style={{ padding: '0.5rem', width: '300px', fontSize: '1rem' }}
       />
 
-        <button id={"searchButton"}>Rechercher une personne</button>
+        <button id={"searchButton"} onClick={gePersonByName}>Rechercher une personne</button>
 
       <table border="1" cellPadding="5" style={{ marginTop: '1rem' }}>
         <thead>
@@ -54,21 +68,34 @@ const  loadAllPersons = async () =>{
             <th>Genre</th>
           </tr>
         </thead>
-        <tbody>
-          {listPerson.map((line,i) => (
-            <tr key={i}>
-              <td>{line.id}</td>
-              <td>{line.name}</td>
-              <td>{line.lastName}</td>
-              <td>{line.email}</td>
-              <td>{line.gender}</td>
-            </tr>
-          ))}
-        </tbody>
+          <tbody>
+          {singlePerson != null ? < tr >
 
-      </table>
-    </div>
-  );
+              < td > {singlePerson[0].id}</td>
+              <td>{singlePerson[0].name}</td>
+          <td>{singlePerson[0].lastName}</td>
+          <td>{singlePerson[0].email}</td>
+          <td>{singlePerson[0].gender}</td>
+            </tr> : listPerson.map((ligne, i)=>(
+                <tr key={i}>
+                  < td > {ligne.id}</td>
+                  <td>{ligne.name}</td>
+                  <td>{ligne.lastName}</td>
+                  <td>{ligne.email}</td>
+                  <td>{ligne.gender}</td>
+              </tr>
+          ))
+
+
+        }
+
+
+    </tbody>
+
+</table>
+</div>
+)
+    ;
 }
 
 export default App;
