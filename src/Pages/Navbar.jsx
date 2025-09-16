@@ -18,6 +18,11 @@ return (
                 <Link to="/signUp" style={{textDecoration: "none"}}>
                     <text className={"pagesName"}>SignUp</text>
                 </Link>
+                &nbsp;
+            <Link to="/series" style={{textDecoration: "none"}}>
+                <text className={"pagesName"}>Series</text>
+            </Link>
+
 
 
 
