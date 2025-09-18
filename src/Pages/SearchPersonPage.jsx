@@ -94,6 +94,9 @@ function SearchPersonPage() {
                     <td>{singlePerson.lastName}</td>
                     <td>{singlePerson.email}</td>
                     <td>{singlePerson.gender}</td>
+                    <td> <button onClick={() => {
+                        deleteAPerson(singlePerson.id)
+                    }}>X</button></td>
                 </tr> : listPerson.map((ligne, i)=>(
                     <tr key={i}>
                         < td > {ligne.id}</td>
