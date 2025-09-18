@@ -50,24 +50,31 @@ function SeriesCatalog() {
 
 
 return (
-    <div className="card-group">
-        {listSeries.map((line, i) => (
-            <div className="card" key={i}>
-                <div className="card-body">
-                    <h5 className="card-title"> Titre: {line.title}</h5>
-                    <p className="card-text">
-                      Genre:  {line.genre}
-                    </p>
-                    <p>  Nombre d'épisodes:  {line.episodesNumber}  </p>
-                </div>
-                <div className="card-footer">
-                    <small className="text-body-secondary"> Note:  {line.rating}</small>
-                </div>
+
+
+
+        <div className="container">
+            <div className="row gap-2">
+                {listSeries.map((ligne, i) => (
+                        <div className="card col-2" key={i}>
+                            <div className="card-body">
+                                <h5 className="card-title"> Titre: {ligne.title}</h5>
+                                <p className="card-text">
+                                    Genre: {ligne.genre}
+                                </p>
+                                <p> Nombre d'épisodes: {ligne.episodesNumber}  </p>
+                            </div>
+                            <div className="card-footer">
+                                <small className="text-body-secondary"> Note: {ligne.rating}</small>
+                            </div>
+                        </div>
+                    )
+                )}
             </div>
-        ))}
-    </div>
-);
+        </div>
+
+        );
 
 
-}
-export  default SeriesCatalog;
+        }
+        export default SeriesCatalog;
