@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
-function PageHistory(){
+function TrendingPage(){
 
     const para = useParams()
     const id = para.id
@@ -10,7 +10,7 @@ function PageHistory(){
     const [listSeries,setListSeries] = useState([]);
    
     const  loadAllSeries = async () =>{
-         const path = "http://localhost:8182/history/" + id
+         const path = "http://localhost:8182/person/reco/" + id
 
         const result = await  axios.get(path);
         setListSeries(result.data);
@@ -44,4 +44,4 @@ function PageHistory(){
     );
 
 }
-export default PageHistory
+export default TrendingPage

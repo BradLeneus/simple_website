@@ -7,6 +7,8 @@ import {useNavigate} from "react-router-dom";
 function SearchPersonPage() {
     const [listPerson,setListPerson] = useState([]);
     const  [singlePerson,setSinglePerson] = useState(null);
+    const navitage = useNavigate()
+
     const  loadAllPersons = async () =>{
         const result = await  axios.get("http://localhost:8182/person/getAll");
         setListPerson(result.data);
@@ -34,6 +36,15 @@ function SearchPersonPage() {
 
 
     }
+
+    const consultHistory = (id)=>{
+        navitage("/history/" + id)
+    }
+
+    const consultTrending = (id)=>{
+        navitage("/trending/" + id)
+    }
+
     const deleteAPerson = (id) =>{
         axios.delete(`http://localhost:8182/person/deleteById/${id}`)
             .then(() =>{
@@ -83,6 +94,8 @@ function SearchPersonPage() {
                     <th>Nom</th>
                     <th>Email</th>
                     <th>Genre</th>
+                    <th>History</th>
+                    <th>Trending</th>
                     <th>Delete</th>
                 </tr>
                 </thead>
@@ -94,6 +107,15 @@ function SearchPersonPage() {
                     <td>{singlePerson.lastName}</td>
                     <td>{singlePerson.email}</td>
                     <td>{singlePerson.gender}</td>
+
+                    <td> <button onClick={() => {
+                        consultHistory(singlePerson.id)
+                    }}>Consult History</button></td>
+
+                    <td> <button onClick={() => {
+                        consultTrending(singlePerson.id)
+                    }}>Consult Trending</button></td>
+
                     <td> <button onClick={() => {
                         deleteAPerson(singlePerson.id)
                     }}>X</button></td>
@@ -104,6 +126,14 @@ function SearchPersonPage() {
                         <td>{ligne.lastName}</td>
                         <td>{ligne.email}</td>
                         <td>{ligne.gender}</td>
+                        <td> <button onClick={() => {
+                            consultHistory(ligne.id)
+                        }}>Consult History</button></td>
+
+                        <td> <button onClick={() => {
+                            consultTrending(ligne.id)
+                        }}>Consult Trending</button></td>
+
                         <td> <button onClick={() => {
                             deleteAPerson(ligne.id)
                         }}>X</button></td>
