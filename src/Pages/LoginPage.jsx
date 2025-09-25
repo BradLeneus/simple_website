@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 
 
 function LoginPage() {
-
+    let customerid;
     const navigate  = useNavigate();
     const [userId, setUserId] = useState()
 
@@ -49,16 +49,18 @@ function LoginPage() {
         const path = "http://localhost:8182/person/login/" + person.email + "/" + person.password
         console.log(path)
        const result = await axios.get(path)
-        setUserId(result.data.id)
-        console.log(result.data.id)
+
+
+        const pathHistory = "/history/"+ result.data.id
+
+        navigate(pathHistory)
     }
 
     const submitNewPerson = (e) =>{
         e.preventDefault()
 
         login()
-        const path = "history/"+ userId
-        navigate(path)
+
 
     }
     return (
