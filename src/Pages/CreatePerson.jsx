@@ -46,7 +46,7 @@ function CreatePerson() {
         }
     }*/
     const createPerson = () => {
-        axios.post("http://localhost:8182/person/newPerson", person)
+        axios.post("http://localhost:8182/person/signUp", person)
             .then(() =>{
 
             }).catch((error) =>{
