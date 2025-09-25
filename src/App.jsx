@@ -5,10 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
 import SearchPersonPage from "./Pages/SearchPersonPage.jsx";
 import NavbarPage from "./Pages/NavbarPage.jsx";
-import CreatePerson from "./CreatePerson.jsx";
+import CreatePerson from "./Pages/CreatePerson.jsx";
 import SeriesCatalog from "./Pages/SeriesCatalog.jsx";
 import PageHistory from "./Pages/PageHistory.jsx";
 import TrendingPage from "./Pages/TrendingPage.jsx";
+import LoginPage from "./Pages/LoginPage.jsx";
 
 function App() {
  return (
@@ -22,6 +23,7 @@ function App() {
                      <Route path={"series"} element={<SeriesCatalog/>}/>
                      <Route path={"history/:id"} element={<PageHistory/>}/>
                      <Route path={"trending/:id"} element={<TrendingPage/>}/>
+                     <Route path={"login"} element={<LoginPage/>}/>
                  </Routes>
              </div>
 

@@ -16,6 +16,7 @@ function CreatePerson() {
             lastName:"",
             email:"",
             gender:"",
+            password:"",
 
         }
 
@@ -102,6 +103,15 @@ function CreatePerson() {
                                        style={{color: "white"}}>Gender</label>
                                 <input type="text" name="gender" className="form-control" id="gender"
                                        placeholder="Enter your gender"
+                                       required
+                                       onChange={(e) => changement(e)}
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label text-start d-block"
+                                       style={{color: "white"}}>Gender</label>
+                                <input type="text" name="password" className="form-control" id="password"
+                                       placeholder="Enter your password"
                                        required
                                        onChange={(e) => changement(e)}
                                 />

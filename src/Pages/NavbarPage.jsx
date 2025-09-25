@@ -18,13 +18,20 @@ return (
                             </Link>
                         </li>
                         <li className="nav-item">
+                            <Link to="/series" className="navbar-brand">
+                                Series
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
                             <Link to="/signUp"  className="navbar-brand">
                                 SignUp
                             </Link>
                         </li>
+
                         <li className="nav-item">
-                            <Link to="/series" className="navbar-brand">
-                                Series
+                            <Link to="/login"  className="navbar-brand">
+                                login
                             </Link>
                         </li>
 
