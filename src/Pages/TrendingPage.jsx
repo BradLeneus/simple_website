@@ -10,7 +10,7 @@ function TrendingPage(){
     const [listSeries,setListSeries] = useState([]);
    
     const  loadAllSeries = async () =>{
-         const path = "http://localhost:8182/person/reco/" + id
+         const path = "http://localhost:8182/person/tendence/" + id
 
         const result = await  axios.get(path);
         setListSeries(result.data);
