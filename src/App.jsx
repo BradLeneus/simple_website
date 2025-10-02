@@ -1,70 +1,39 @@
 import { useEffect, useState } from 'react';
-import { loadDatabaseFromCSV } from './db';
-import { searchPeople } from './utils/search';
+import axios from "axios";
+// import { searchPeople } from './utils/search';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
+import SearchPersonPage from "./Pages/SearchPersonPage.jsx";
+import NavbarPage from "./Pages/NavbarPage.jsx";
+import CreatePerson from "./Pages/CreatePerson.jsx";
+import SeriesCatalog from "./Pages/SeriesCatalog.jsx";
+import PageHistory from "./Pages/PageHistory.jsx";
+import TrendingPage from "./Pages/TrendingPage.jsx";
+import LoginPage from "./Pages/LoginPage.jsx";
+import RecommendationPage from "./Pages/ReommendationPage.jsx";
 
 function App() {
-  const [rows, setRows] = useState([]);
-  const [query, setQuery] = useState('');
-  const [db, setDb] = useState(null);
+ return (
+     <BrowserRouter>
+         <div>
+             <NavbarPage/>
+             <div>
+                 <Routes>
+                    <Route path="/" element={<SearchPersonPage/>}/>
+                     <Route path="SignUp" element={<CreatePerson/>}/>
+                     <Route path={"series"} element={<SeriesCatalog/>}/>
+                     <Route path={"history/:id"} element={<PageHistory/>}/>
+                     <Route path={"tendence"} element={<TrendingPage/>}/>
+                     <Route path={"login"} element={<LoginPage/>}/>
+                     <Route path={"reco/:id"} element={<RecommendationPage/>}/>
+                 </Routes>
+             </div>
 
-  useEffect(() => {
-    const load = async () => {
-      const database = await loadDatabaseFromCSV('/data/people.csv');
-      setDb(database);
-      const res = database.exec('SELECT * FROM people');
-      if (res.length > 0) {
-        setRows(res[0].values);
-      }
-    };
-    load();
-  }, []);
+         </div>
 
-  const handleSearch = (e) => {
-    const input = e.target.value;
-    setQuery(input);
+     </BrowserRouter>
 
-    if (db) {
-      const results = searchPeople(db, input);
-      setRows(results);
-    }
-  };
-
-  return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Recherche dans la base de personnes</h1>
-
-      <input
-        type="text"
-        value={query}
-        onChange={handleSearch}
-        placeholder="Ex: PHI"
-        style={{ padding: '0.5rem', width: '300px', fontSize: '1rem' }}
-      />
-
-      <table border="1" cellPadding="5" style={{ marginTop: '1rem' }}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Genre</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(([id, first, last, email, gender]) => (
-            <tr key={id}>
-              <td>{id}</td>
-              <td>{first}</td>
-              <td>{last}</td>
-              <td>{email}</td>
-              <td>{gender}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+ )
 }
 
 export default App;
