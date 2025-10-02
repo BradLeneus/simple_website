@@ -2,15 +2,15 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
-function TrendingPage(){
+function RecommendationPage(){
 
     const para = useParams()
     const id = para.id
 
     const [listSeries,setListSeries] = useState([]);
-   
+
     const  loadAllSeries = async () =>{
-         const path = "http://localhost:8182/person/tendence"
+        const path = "http://localhost:8182/person/reco/" + id
 
         const result = await  axios.get(path);
         setListSeries(result.data);
@@ -19,7 +19,7 @@ function TrendingPage(){
 
         loadAllSeries()
     }, [listSeries]);
-    
+
     return(
         <div className="container">
             <div className="row gap-2">
@@ -44,4 +44,4 @@ function TrendingPage(){
     );
 
 }
-export default TrendingPage
+export default RecommendationPage

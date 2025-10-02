@@ -34,6 +34,11 @@ return (
                                 login
                             </Link>
                         </li>
+                        <li style={{paddingLeft : 1100}} >
+                            <Link to="/tendence"  className="navbar-brand">
+                                Trending
+                            </Link>
+                        </li>
 
                     </ul>
                 </div>

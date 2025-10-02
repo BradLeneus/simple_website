@@ -41,8 +41,8 @@ function SearchPersonPage() {
         navitage("/history/" + id)
     }
 
-    const consultTrending = (id)=>{
-        navitage("/trending/" + id)
+    const consultReco = (id)=>{
+        navitage("/reco/" + id)
     }
 
     const deleteAPerson = (id) =>{
@@ -113,8 +113,8 @@ function SearchPersonPage() {
                     }}>Consult History</button></td>
 
                     <td> <button onClick={() => {
-                        consultTrending(singlePerson.id)
-                    }}>Consult Trending</button></td>
+                        consultReco(singlePerson.id)
+                    }}>Recommendation</button></td>
 
                     <td> <button onClick={() => {
                         deleteAPerson(singlePerson.id)
@@ -131,8 +131,8 @@ function SearchPersonPage() {
                         }}>Consult History</button></td>
 
                         <td> <button onClick={() => {
-                            consultTrending(ligne.id)
-                        }}>Consult Trending</button></td>
+                            consultReco(ligne.id)
+                        }}>Recommendation</button></td>
 
                         <td> <button onClick={() => {
                             deleteAPerson(ligne.id)
