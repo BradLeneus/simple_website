@@ -10,6 +10,7 @@ import SeriesCatalog from "./Pages/SeriesCatalog.jsx";
 import PageHistory from "./Pages/PageHistory.jsx";
 import TrendingPage from "./Pages/TrendingPage.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
+import RecommendationPage from "./Pages/ReommendationPage.jsx";
 
 function App() {
  return (
@@ -22,8 +23,9 @@ function App() {
                      <Route path="SignUp" element={<CreatePerson/>}/>
                      <Route path={"series"} element={<SeriesCatalog/>}/>
                      <Route path={"history/:id"} element={<PageHistory/>}/>
-                     <Route path={"trending/:id"} element={<TrendingPage/>}/>
+                     <Route path={"tendence"} element={<TrendingPage/>}/>
                      <Route path={"login"} element={<LoginPage/>}/>
+                     <Route path={"reco/:id"} element={<RecommendationPage/>}/>
                  </Routes>
              </div>
 
