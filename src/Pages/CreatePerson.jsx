@@ -12,7 +12,7 @@ function CreatePerson() {
     const navigate  = useNavigate();
 
     const [person, setPerson] = useState({
-            name:"",
+            username:"",
             lastName:"",
             email:"",
             gender:"",
@@ -46,7 +46,7 @@ function CreatePerson() {
         }
     }*/
     const createPerson = () => {
-        axios.post("http://localhost:8182/person/signUp", person)
+        axios.post("http://localhost:8182/auth/register", person)
             .then(() =>{
 
             }).catch((error) =>{
