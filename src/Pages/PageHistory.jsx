@@ -5,21 +5,52 @@ import axios from "axios";
 function PageHistory(){
 
     const para = useParams()
-    const id = para.id
 
+     const [user, setUser] = useState(null);
+     const [error, setError] = useState("");
     const [listSeries,setListSeries] = useState([]);
-   
-    const  loadAllSeries = async () =>{
-         const path = "http://localhost:8182/history/" + id
 
+   useEffect(() => {
+
+      fetchUser();
+    }, []);
+
+
+
+ const fetchUser = async () => {
+        try {
+          // On récupère le token du localStorage
+          const token = localStorage.getItem("token");
+          if (!token) {
+              alert("veuillez vous connecter")
+            setError("Aucun token trouvé — connecte-toi d'abord.");
+            return;
+          }
+
+          // Appel à ton endpoint sécurisé
+          const response = await axios.get("http://localhost:8182/auth/me", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          // Si tout va bien
+          setUser(response.data);
+          console.log(response.data)
+          loadAllSeries(response.data.id)
+        } catch (err) {
+
+          console.error(err);
+          setError("Non connecté ou token invalide");
+        }
+      };
+
+    const  loadAllSeries = async (id) =>{
+        const path = "http://localhost:8182/history/" + id
         const result = await  axios.get(path);
         setListSeries(result.data);
     }
-    useEffect(() => {
 
-        loadAllSeries()
-    }, [listSeries]);
-    
     return(
         <div className="container">
             <div className="row gap-2">

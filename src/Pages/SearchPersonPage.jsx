@@ -109,7 +109,8 @@ function SearchPersonPage() {
                     <td>{singlePerson.gender}</td>
 
                     <td> <button onClick={() => {
-                        consultHistory(singlePerson.id)
+                       // consultHistory(singlePerson.id)
+                       alert("admin requis")
                     }}>Consult History</button></td>
 
                     <td> <button onClick={() => {
@@ -127,7 +128,8 @@ function SearchPersonPage() {
                         <td>{ligne.email}</td>
                         <td>{ligne.gender}</td>
                         <td> <button onClick={() => {
-                            consultHistory(ligne.id)
+                            //consultHistory(ligne.id)
+                            alert("admin requis")
                         }}>Consult History</button></td>
 
                         <td> <button onClick={() => {

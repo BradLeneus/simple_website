@@ -22,7 +22,7 @@ function App() {
                     <Route path="/" element={<SearchPersonPage/>}/>
                      <Route path="SignUp" element={<CreatePerson/>}/>
                      <Route path={"series"} element={<SeriesCatalog/>}/>
-                     <Route path={"history/:id"} element={<PageHistory/>}/>
+                     <Route path={"history"} element={<PageHistory/>}/>
                      <Route path={"tendence"} element={<TrendingPage/>}/>
                      <Route path={"login"} element={<LoginPage/>}/>
                      <Route path={"reco/:id"} element={<RecommendationPage/>}/>

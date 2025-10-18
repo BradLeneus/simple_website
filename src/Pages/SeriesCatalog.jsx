@@ -14,39 +14,45 @@ function SeriesCatalog() {
     }, [listSeries]);
 
 
+ const fetchUser = async (serieId) => {
+        try {
+          // On récupère le token du localStorage
+          const token = localStorage.getItem("token");
+          if (!token) {
+              alert("veuillez vous connecter")
+            setError("Aucun token trouvé — connecte-toi d'abord.");
+            return;
+          }
 
-    // const getSerieByGenre = async () =>{
-    //     let name = document.getElementById("name").value
-    //
-    //
-    //     const result = await axios.get(`http://localhost:8182/person/search/${name}`);
-    //
-    //     if(result.data.id >0){
-    //         console.log(result.data)
-    //         setSinglePerson(result.data)
-    //         setListPerson()
-    //     }
-    //
-    //
-    //
-    //
-    // }
-    // const deleteAPerson = (id) =>{
-    //     axios.delete(`http://localhost:8182/person/deleteById/${id}`)
-    //         .then(() =>{
-    //
-    //         }).catch((error) =>{
-    //         console.log(error)
-    //     })
-    //     console.log("delete Person with id " + id)
-    // }
-    // const handleSearch =  (e)=>{
-    //     console.log(e.target.value)
-    //     if(e.target.value == ""){
-    //         setSinglePerson(null)
-    //     }
-    // }
+          // Appel à ton endpoint sécurisé
+          const response = await axios.get("http://localhost:8182/auth/me", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
+          // Si tout va bien
+
+          console.log(response.data.id + " serie id : " + serieId)
+          addHistory(response.data.id, serieId)
+
+        } catch (err) {
+          console.error(err);
+          setError("Non connecté ou token invalide");
+        }
+      };
+
+    const addHistory = async (userId, serieId) =>{
+        try{
+
+            const response = await axios.post("http://localhost:8182/history/" + userId + "/" + serieId);
+                    }
+
+        catch{
+            console.log("nop")
+            }
+
+}
 
 
 return (
@@ -66,6 +72,9 @@ return (
                             </div>
                             <div className="card-footer">
                                 <small className="text-body-secondary"> Note: {ligne.rating}</small>
+                                <button onClick={()=>{fetchUser(ligne.id)}}>Regarder</button>
+
+
                             </div>
                         </div>
                     )
