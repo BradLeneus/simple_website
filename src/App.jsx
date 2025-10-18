@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
+import "./axiosSetup";
+import RequireAuth from "./RequireAuth";
 // import { searchPeople } from './utils/search';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
@@ -18,15 +20,15 @@ function App() {
          <div>
              <NavbarPage/>
              <div>
-                 <Routes>
+                <Routes>
                     <Route path="/" element={<SearchPersonPage/>}/>
-                     <Route path="SignUp" element={<CreatePerson/>}/>
-                     <Route path={"series"} element={<SeriesCatalog/>}/>
-                     <Route path={"history"} element={<PageHistory/>}/>
-                     <Route path={"tendence"} element={<TrendingPage/>}/>
-                     <Route path={"login"} element={<LoginPage/>}/>
-                     <Route path={"reco/:id"} element={<RecommendationPage/>}/>
-                 </Routes>
+                    <Route path="SignUp" element={<CreatePerson/>}/>
+                    <Route path="series" element={<SeriesCatalog/>}/>
+                    <Route path="history" element={<RequireAuth><PageHistory/></RequireAuth>}/>
+                    <Route path="tendence" element={<TrendingPage/>}/>
+                    <Route path="login" element={<LoginPage/>}/>
+                    <Route path="reco/:id" element={<RecommendationPage/>}/>
+                </Routes>
              </div>
 
          </div>
