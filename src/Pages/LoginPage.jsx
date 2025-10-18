@@ -46,15 +46,27 @@ function LoginPage() {
           }
       }*/
     const login = async () => {
-        const path = "http://localhost:8182/person/login/" + person.email + "/" + person.password
-        console.log(path)
-       const result = await axios.get(path)
+      try {
+        const response = await axios.post("http://localhost:8182/auth/login", {
+          email: person.email,
+          password: person.password
+        });
 
+        const token = response.data.token;
+        console.log("Token:", token);
 
-        const pathHistory = "/history/"+ result.data.id
+        // Stocker le token dans localStorage
+        localStorage.setItem("token", token);
 
-        navigate(pathHistory)
+        // Naviguer vers la page protégée
+        navigate("/");
+
+      }  catch (error) {
+          console.error("Erreur de connexion:", error);
+        }
+
     }
+
 
     const submitNewPerson = (e) =>{
         e.preventDefault()

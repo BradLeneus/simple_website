@@ -34,7 +34,14 @@ return (
                                 login
                             </Link>
                         </li>
-                        <li style={{paddingLeft : 1100}} >
+                         <li style={{paddingLeft : 1000}} >
+                            <Link to="/history"  className="navbar-brand">
+                                myHistory
+                            </Link>
+                        </li>
+
+
+                        <li >
                             <Link to="/tendence"  className="navbar-brand">
                                 Trending
                             </Link>
