@@ -1,4 +1,7 @@
-
+# Lien de l'image docker pour le frontend sur docker Hub
+```
+https://hub.docker.com/repository/docker/bradleneus/simple-website-frontend/general
+```
 # Captures d'écrans Jenkins pour l'Epic 2
 
 <img width="1840" height="914" alt="image" src="https://github.com/user-attachments/assets/f93cf49f-7c34-445a-9893-0ef06f07a301" />
